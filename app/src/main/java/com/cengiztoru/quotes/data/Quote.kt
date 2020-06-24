@@ -11,6 +11,6 @@ data class Quote(
     val author: String
 ) {
     override fun toString(): String {
-        return "$quoteText - $author \n"
+        return "$quoteText - $author"
     }
 }
