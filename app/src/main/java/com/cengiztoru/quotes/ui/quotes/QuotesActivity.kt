@@ -3,7 +3,7 @@ package com.cengiztoru.quotes.ui.quotes
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.cengiztoru.quotes.R
 import com.cengiztoru.quotes.data.Quote
 import com.cengiztoru.quotes.utils.InjectorUtils
@@ -20,7 +20,8 @@ class QuotesActivity : AppCompatActivity() {
     private fun initalizeUi() {
 
         val factory = InjectorUtils.provideQuotesViewModelFactory()
-        val viewModel = ViewModelProviders.of(this, factory)
+
+        val viewModel = ViewModelProvider(this, factory)
             .get(QuotesViewModel::class.java)
 
         viewModel.getQuotes().observe(this, Observer { quotes ->
