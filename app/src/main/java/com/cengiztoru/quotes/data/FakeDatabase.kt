@@ -8,15 +8,21 @@ package com.cengiztoru.quotes.data
 
 //Singleton
 class FakeDatabase private constructor() {
+
+    var quoteDao = FakeQuoteDao()
+        private set
+
     companion object {
         @Volatile
         private var instance: FakeDatabase? = null //this variable is visible for other threats
 
+        //if instance not null return instance else create instance
         fun getInstance() = instance
-            ?: synchronized(this) { //if intance not null return instance else create instance
-                instance ?: FakeDatabase().also {
-                    instance = it
-                }   //check again, if instance not null return instance else create object and initialize instance by new object
+            ?: synchronized(this) {
+                instance
+                    ?: FakeDatabase().also { //check again, if instance not null return instance else create object and initialize instance by new object
+                        instance = it
+                    }
             }
 
     }
